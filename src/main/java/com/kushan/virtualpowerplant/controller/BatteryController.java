@@ -45,8 +45,8 @@ public class BatteryController {
     }
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/bulk_create")
-    public ResponseEntity<List<Battery>> acceptBulkCreateRequest(@Valid @RequestBody BulkBatteryCreateRequest request){
+    public List<Battery> acceptBulkCreateRequest(@Valid @RequestBody BulkBatteryCreateRequest request){
         log.info("BulkBatteryCreateRequest : {} accepted..",request);
-        return ResponseEntity.ok(batteryService.acceptBulkBatteryCreateRequest(request));
+        return batteryService.acceptBulkBatteryCreateRequest(request);
     }
 }
