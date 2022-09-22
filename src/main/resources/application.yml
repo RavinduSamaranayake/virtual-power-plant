@@ -1,0 +1,8 @@
+spring:
+  data:
+    mongodb:
+      database: power-plant
+      host: localhost
+      port: 27017
+  web:
+    base-path: /api
