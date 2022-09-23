@@ -10,7 +10,7 @@ Backend Code Challenge - Sample Springboot project for virtual power plant syste
 # Start system
 
 1. Clone virtual-power-plant repository
-2. Run `docker-compose up -d`
+2. Run `docker compose up`
 
 # Accept data - Post endpoints
 
