@@ -72,7 +72,7 @@ public class BatteryControllerWebLayerTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/batteries/postcode_range?lowerPostcode=9000005&upperPostcode=90000000"))
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.totalWatt").value("37.5"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.averageWatt").value("12.6"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.averageWatt").value("12.5"))
                 .andExpect(status().isOk());
         log.info("WebLayer Battery Controller getStatsWithinPostcodes test completed......");
     }
