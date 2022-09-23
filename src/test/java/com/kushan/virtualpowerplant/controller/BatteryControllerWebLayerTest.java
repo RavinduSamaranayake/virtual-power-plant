@@ -42,17 +42,17 @@ public class BatteryControllerWebLayerTest {
 
     @Test
     void acceptBulkBatteryCreateRequest() throws Exception {
-        List<BatteryCreateRequest> inputList = List.of(new BatteryCreateRequest("testBat_01",9001,12.5),
-                new BatteryCreateRequest("testBat_02",9002,12.5),
-                new BatteryCreateRequest("testBat_03",9003,12.5),
-                new BatteryCreateRequest("testBat_04",9004,12.5));
+        List<BatteryCreateRequest> inputList = List.of(new BatteryCreateRequest("testBat_01", 9001, 12.5),
+                new BatteryCreateRequest("testBat_02", 9002, 12.5),
+                new BatteryCreateRequest("testBat_03", 9003, 12.5),
+                new BatteryCreateRequest("testBat_04", 9004, 12.5));
 
         BulkBatteryCreateRequest request = new BulkBatteryCreateRequest(inputList);
 
-        List<Battery> returnedList = List.of(new Battery("01","testBat_01",9001,12.5),
-                new Battery("02","testBat_02",9002,12.5),
-                new Battery("03","testBat_03",9003,12.5),
-                new Battery("04","testBat_04",9004,12.5));
+        List<Battery> returnedList = List.of(new Battery("01", "testBat_01", 9001, 12.5),
+                new Battery("02", "testBat_02", 9002, 12.5),
+                new Battery("03", "testBat_03", 9003, 12.5),
+                new Battery("04", "testBat_04", 9004, 12.5));
 
         when(batteryService.acceptBulkBatteryCreateRequest(any(BulkBatteryCreateRequest.class)))
                 .thenReturn(returnedList);
@@ -60,15 +60,15 @@ public class BatteryControllerWebLayerTest {
         mockMvc.perform(MockMvcRequestBuilders.post("/batteries/bulk_create")
                         .content(new ObjectMapper().writeValueAsString(request))
                         .contentType(MediaType.APPLICATION_JSON))
-                        .andExpect(status().isCreated());
+                .andExpect(status().isCreated());
         log.info("WebLayer Battery Controller AcceptBulkCreateRequest test completed......");
     }
 
     @Test
     void getStatsWithinPostcodes() throws Exception {
         BatteryStatResponse statResponse = new BatteryStatResponse(
-                List.of("testBat_01","testBat_02","testBat_03"),37.5,12.5);
-        when(batteryService.getBatteryStatsWithinPostcodes(anyInt(),anyInt())).thenReturn(statResponse);
+                List.of("testBat_01", "testBat_02", "testBat_03"), 37.5, 12.5);
+        when(batteryService.getBatteryStatsWithinPostcodes(anyInt(), anyInt())).thenReturn(statResponse);
         mockMvc.perform(MockMvcRequestBuilders.get("/batteries/postcode_range?lowerPostcode=9000005&upperPostcode=90000000"))
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.totalWatt").value("37.5"))

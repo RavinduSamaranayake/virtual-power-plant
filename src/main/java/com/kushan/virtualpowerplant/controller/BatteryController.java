@@ -26,27 +26,29 @@ public class BatteryController {
     private final BatteryService batteryService;
 
     @GetMapping
-    public ResponseEntity<List<Battery>> getAll(){
+    public ResponseEntity<List<Battery>> getAll() {
         log.info("Fetch All batteries called..");
         return ResponseEntity.ok(batteryService.getAllBatteries());
     }
 
     @GetMapping("/postcode_range")
     public ResponseEntity<BatteryStatResponse> getStatsWithinPostcodes(@RequestParam("lowerPostcode") int lowerPostcode
-            ,@RequestParam("upperPostcode") int upperPostcode){
-        log.info("Fetch battery stats within postcode range {} - {} called..",lowerPostcode,upperPostcode);
-        return ResponseEntity.ok(batteryService.getBatteryStatsWithinPostcodes(lowerPostcode,upperPostcode));
+            , @RequestParam("upperPostcode") int upperPostcode) {
+        log.info("Fetch battery stats within postcode range {} - {} called..", lowerPostcode, upperPostcode);
+        return ResponseEntity.ok(batteryService.getBatteryStatsWithinPostcodes(lowerPostcode, upperPostcode));
     }
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/create")
-    public Battery acceptCreateRequest(@Valid @RequestBody BatteryCreateRequest request){
-        log.info("BatteryCreateRequest : {} accepted..",request);
+    public Battery acceptCreateRequest(@Valid @RequestBody BatteryCreateRequest request) {
+        log.info("BatteryCreateRequest : {} accepted..", request);
         return batteryService.createBattery(request);
     }
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/bulk_create")
-    public List<Battery> acceptBulkCreateRequest(@Valid @RequestBody BulkBatteryCreateRequest request){
-        log.info("BulkBatteryCreateRequest : {} accepted..",request);
+    public List<Battery> acceptBulkCreateRequest(@Valid @RequestBody BulkBatteryCreateRequest request) {
+        log.info("BulkBatteryCreateRequest : {} accepted..", request);
         return batteryService.acceptBulkBatteryCreateRequest(request);
     }
 }

@@ -39,10 +39,10 @@ public class BatteryService {
     public BatteryStatResponse getBatteryStatsWithinPostcodes(int lowerPostcode, int upperPostcode) {
         if (lowerPostcode >= upperPostcode)
             throw new InvalidPostcodeRange("lowerPostcode : " + lowerPostcode + "higher than upperPostcode : " + upperPostcode);
-        var batteryList = repository.findByPostcodeBetween(lowerPostcode-1, upperPostcode);
+        var batteryList = repository.findByPostcodeBetween(lowerPostcode - 1, upperPostcode);
         if (batteryList.isEmpty()) return new BatteryStatResponse(List.of(), 0.0, 0.0);
-        var sortedNameList = batteryList.stream().filter(battery -> battery.getName()!=null)
-                .sorted(Comparator.comparing(Battery::getName,String.CASE_INSENSITIVE_ORDER)).map(Battery::getName).toList();
+        var sortedNameList = batteryList.stream().filter(battery -> battery.getName() != null)
+                .sorted(Comparator.comparing(Battery::getName, String.CASE_INSENSITIVE_ORDER)).map(Battery::getName).toList();
         var totalWatt = batteryList.stream().mapToDouble(Battery::getWattCapacity).sum();
         var avgWatt = totalWatt / batteryList.size();
         return new BatteryStatResponse(sortedNameList, totalWatt, avgWatt);
