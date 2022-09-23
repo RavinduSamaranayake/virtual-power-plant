@@ -9,8 +9,8 @@ import com.kushan.virtualpowerplant.repository.BatteryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -41,7 +41,8 @@ public class BatteryService {
             throw new InvalidPostcodeRange("lowerPostcode : " + lowerPostcode + "higher than upperPostcode : " + upperPostcode);
         var batteryList = repository.findByPostcodeBetween(lowerPostcode-1, upperPostcode);
         if (batteryList.isEmpty()) return new BatteryStatResponse(List.of(), 0.0, 0.0);
-        var sortedNameList = batteryList.stream().map(Battery::getName).filter(Objects::nonNull).sorted().toList();
+        var sortedNameList = batteryList.stream().filter(battery -> battery.getName()!=null)
+                .sorted(Comparator.comparing(Battery::getName,String.CASE_INSENSITIVE_ORDER)).map(Battery::getName).toList();
         var totalWatt = batteryList.stream().mapToDouble(Battery::getWattCapacity).sum();
         var avgWatt = totalWatt / batteryList.size();
         return new BatteryStatResponse(sortedNameList, totalWatt, avgWatt);
