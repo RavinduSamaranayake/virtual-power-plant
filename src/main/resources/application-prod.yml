@@ -1,0 +1,9 @@
+spring:
+  data:
+    mongodb:
+      database: power-plant
+      host: ${MONGO_URL}
+      port: 27017
+server:
+  servlet:
+    context-path: /api

@@ -7,5 +7,12 @@ services:
       - mongodb-data:/data/db
     ports:
       - "27017:27017"
+  backend:
+    image: ravindu95/virtual-power-plant:latest
+    container_name: power-plant-backend
+    ports:
+      - "8080:8080"
+    environment:
+      - MONGO_URL=mongodb
 volumes:
     mongodb-data:
