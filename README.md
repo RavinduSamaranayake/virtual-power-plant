@@ -3,8 +3,8 @@ Backend Code Challenge - Sample Springboot project for virtual power plant syste
 
 # Deployed Docker compose on AWS EC2
 
-1. [Access API](http://54.146.20.217:8080/api/batteries)
-2. Configure [Base Url](http://54.146.20.217:8080/api) as a environment of [postman](https://www.postman.com/downloads/)
+1. Access API http://54.146.20.217:8080/api/batteries
+2. Configure Base Url http://54.146.20.217:8080/api as a environment of [postman](https://www.postman.com/downloads/)
 
 # Accept data - Post endpoints
 
@@ -51,10 +51,10 @@ sample input query params---------------------------------------->lowerPostcode=
 
 # Start system Locally
 
-1. Clone virtual-power-plant repository
+1. Clone repository `git clone https://github.com/RavinduSamaranayake/virtual-power-plant.git`
 2. Run `docker compose up`
-3. [Access API](http://localhost:8080/api/batteries)
-4. Configure [Base Url](http://localhost:8080/api) as a environment of [postman](https://www.postman.com/downloads/)
+3. Access API http://localhost:8080/api/batteries
+4. Configure Base Url http://localhost:8080/api as a environment of [postman](https://www.postman.com/downloads/)
 5. Access endpoints same as the above steps
 
 
