@@ -8,9 +8,9 @@ Backend Code Challenge - Sample Springboot project for virtual power plant syste
 
 # Accept data - Post endpoints
 
-[Post a request](http://54.146.20.217:8080/api/batteries/bulk_create) to accept a list of batteries.
+Post a [/batteries/bulk_create](http://54.146.20.217:8080/api/batteries/bulk_create) request to accept a list of batteries.
 
-sample input jason raw data ---------------------------------------------------------------------------------------------------------------------------->
+Sample request body jason raw data ------------------------------------------------------------------------------------------------------------------->
 
 {
    "batteryCreateRequestList" : [
@@ -36,10 +36,9 @@ sample input jason raw data ----------------------------------------------------
 
 # View data - Get endpoints
 
-Goto [view stat data](http://54.146.20.217:8080/api/batteries/postcode_range?lowerPostcode=11400&upperPostcode=11910) to access a list of names of batteries and 
-some statistics such as total and average watt capacity fall within the postcode range. 
+Goto [/batteries/postcode_range?](http://54.146.20.217:8080/api/batteries/postcode_range?lowerPostcode=11400&upperPostcode=11910) to access a list of names of batteries and some statistics such as total and average watt capacity fall within the given postcode range. 
 
-sample input query params---------------------------------------->lowerPostcode=11400&upperPostcode=11910<-------------------------------------------------------------
+Sample input query params---------------------------------------->lowerPostcode=11400&upperPostcode=11910<-------------------------------------------------------------
 
 ![image](https://user-images.githubusercontent.com/31001595/192081941-829ed2f7-51b5-4ffe-95e6-5cb7b7225dc9.png)
 
